@@ -6,6 +6,11 @@ import userRoutes from "./modules/users/user.route";
 import studentRoutes from "./modules/student/student.route";
 import teacherRoutes from "./modules/teachers/teacher.route";
 import classRoutes from "./modules/class/class.route";
+import subjectRoutes from "./modules/subjects/subject.route";
+import timetableRoutes from "./modules/timetable/timetable.route";
+import attendanceRoutes from './modules/attendance/attendance.route';
+
+
 
 
 const app = express();
@@ -27,6 +32,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/teachers", teacherRoutes);
 app.use("/api/classes", classRoutes);
+app.use("/api/subjects", subjectRoutes);
+app.use("/api/timetable", timetableRoutes);
+app.use('/api/attendance', attendanceRoutes);
 
 
 // fallback
