@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './modules/auth/auth.route';
+import userRoutes from "./modules/users/user.route";
+import studentRoutes from "./modules/student/student.route";
 
 const app = express();
 
@@ -18,6 +20,8 @@ app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/students", studentRoutes);
 
 // fallback
 app.use((req, res) => res.status(404).json({ message: 'Route not found' }));
