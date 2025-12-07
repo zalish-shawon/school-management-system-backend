@@ -22,11 +22,13 @@ const studentSchema = new Schema<IStudent>(
     dob: { type: Date, required: true },
 
     admissionId: { type: String, required: true, unique: true },
-    classId: { type: Schema.Types.ObjectId, ref: "Class", required: true },
-    sectionId: { type: Schema.Types.ObjectId, ref: "Section", required: true },
+    // classId: { type: Schema.Types.ObjectId, ref: "Class" },
+    classId: { type: Schema.Types.ObjectId, ref: "Class" },
+    sectionId: { type: Schema.Types.ObjectId, ref: "Section" },
+    // sectionId: { type: Schema.Types.ObjectId, ref: "Section" },
 
     parentName: { type: String, required: true },
-    parentPhone: { type: String, required: true },
+    parentPhone: { type: String },
     address: { type: String, required: true },
     photo: { type: String },
 
