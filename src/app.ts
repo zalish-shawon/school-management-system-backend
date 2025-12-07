@@ -5,6 +5,7 @@ import authRoutes from './modules/auth/auth.route';
 import userRoutes from "./modules/users/user.route";
 import studentRoutes from "./modules/student/student.route";
 import teacherRoutes from "./modules/teachers/teacher.route";
+import classRoutes from "./modules/class/class.route";
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.use('/api/auth', authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/students", studentRoutes);
 app.use("/api/teachers", teacherRoutes);
+app.use("/api/classes", classRoutes);
 
 
 // fallback
