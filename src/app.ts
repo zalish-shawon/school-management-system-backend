@@ -9,6 +9,8 @@ import classRoutes from "./modules/class/class.route";
 import subjectRoutes from "./modules/subjects/subject.route";
 import timetableRoutes from "./modules/timetable/timetable.route";
 import attendanceRoutes from './modules/attendance/attendance.route';
+import examRoutes from './modules/exams/exam.route';
+
 
 
 
@@ -35,6 +37,7 @@ app.use("/api/classes", classRoutes);
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/timetable", timetableRoutes);
 app.use('/api/attendance', attendanceRoutes);
+app.use('/api/exams', examRoutes);
 
 
 // fallback

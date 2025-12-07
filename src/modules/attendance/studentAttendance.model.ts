@@ -1,15 +1,6 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Types, InferSchemaType } from 'mongoose';
 
-export interface IStudentAttendance extends Document {
-  student: Schema.Types.ObjectId;
-  classId: Schema.Types.ObjectId;
-  sectionId: Schema.Types.ObjectId;
-  date: Date;
-  status: 'present' | 'absent' | 'late';
-  remark?: string;
-}
-
-const studentAttendanceSchema = new Schema<IStudentAttendance>(
+const studentAttendanceSchema = new Schema(
   {
     student: { type: Schema.Types.ObjectId, ref: 'Student', required: true },
     classId: { type: Schema.Types.ObjectId, ref: 'Class', required: true },
@@ -21,5 +12,14 @@ const studentAttendanceSchema = new Schema<IStudentAttendance>(
   { timestamps: true }
 );
 
-const StudentAttendance = mongoose.model<IStudentAttendance>('StudentAttendance', studentAttendanceSchema);
+// ⬅ Generate TypeScript type automatically from schema
+export type IStudentAttendance = InferSchemaType<typeof studentAttendanceSchema> & {
+  _id: Types.ObjectId;
+};
+
+const StudentAttendance = mongoose.model<IStudentAttendance>(
+  'StudentAttendance',
+  studentAttendanceSchema
+);
+
 export default StudentAttendance;
