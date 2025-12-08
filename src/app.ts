@@ -10,8 +10,8 @@ import subjectRoutes from "./modules/subjects/subject.route";
 import timetableRoutes from "./modules/timetable/timetable.route";
 import attendanceRoutes from './modules/attendance/attendance.route';
 import examRoutes from './modules/exams/exam.route';
-
-
+import libraryRoutes from './modules/library/library.route';
+import notificationRoutes from './modules/notifications/notification.route';
 
 
 
@@ -38,6 +38,9 @@ app.use("/api/subjects", subjectRoutes);
 app.use("/api/timetable", timetableRoutes);
 app.use('/api/attendance', attendanceRoutes);
 app.use('/api/exams', examRoutes);
+app.use('/api/library', libraryRoutes)
+app.use('/api/notifications', notificationRoutes);
+
 
 
 // fallback
