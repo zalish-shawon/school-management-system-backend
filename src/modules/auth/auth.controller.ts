@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import catchAsync from "../../utils/catchAsync";
 import User from "../users/user.model";
 import RefreshToken from "./auth.model";
 import ApiError from "../../utils/ApiError";
+import jwt, { SignOptions } from "jsonwebtoken";
+import type { StringValue } from "ms";
 
 dotenv.config();
 
@@ -13,16 +14,26 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "15m";
 const REFRESH_SECRET = process.env.REFRESH_TOKEN_SECRET || "refresh_secret";
 const REFRESH_EXPIRES_IN = process.env.REFRESH_TOKEN_EXPIRES_IN || "7d";
 
-function signAccessToken(userId: string, role: string) {
-  return jwt.sign({ sub: userId, role }, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN,
-  });
+export function signAccessToken(userId: string, role: string) {
+  const jwtSecret = process.env.JWT_SECRET;
+  const expiresIn = process.env.JWT_EXPIRES_IN as StringValue;
+
+  return jwt.sign(
+    { sub: userId, role },
+    jwtSecret as string,
+    { expiresIn }
+  );
 }
 
-function signRefreshToken(userId: string) {
-  return jwt.sign({ sub: userId }, REFRESH_SECRET, {
-    expiresIn: REFRESH_EXPIRES_IN,
-  });
+export function signRefreshToken(userId: string) {
+  const refreshSecret = process.env.REFRESH_TOKEN_SECRET;
+  const expiresIn = process.env.REFRESH_TOKEN_EXPIRES_IN as StringValue;
+
+  return jwt.sign(
+    { sub: userId },
+    refreshSecret as string,
+    { expiresIn }
+  );
 }
 
 export const register = catchAsync(async (req: Request, res: Response) => {
