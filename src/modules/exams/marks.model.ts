@@ -1,9 +1,9 @@
 import mongoose, { Schema } from "mongoose";
 
 export interface IMarks {
-  examId: mongoose.Types.ObjectId;
+  examId: mongoose.Types.ObjectId | { name: string; totalMarks: number };
+  subjectId: mongoose.Types.ObjectId | { name: string };
   studentId: mongoose.Types.ObjectId;
-  subjectId: mongoose.Types.ObjectId;
   obtainedMarks: number;
 }
 
